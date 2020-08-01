@@ -1,26 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Lune;
 
 public class TestScript : Lune.Listener {
 
-    void Start() {
-        Lune.NetworkManager.Init();
-        Lune.NetworkManager.Connect("localhost", 9000);
+    public GameObject loginCanvas;
+    public GameObject serverListCanvas;
+    public GameObject AddServerCanvas;
+    public GameObject DirectConnectCanvas;
+    public GameObject GlobalCanvas;
+    public Text usernameText;
 
+    void Start() {
+        LuneCore.Init();
+
+        // Lune.NetworkManager.Connect("localhost", 9000);
         Lune.EventHandler.RegisterEvents(this);
     }
 
-    public override void PacketReceive (PacketReceiveEvent packetReceiveEvent) {
-        Debug.Log(packetReceiveEvent.GetPacket().strings[0]);
+    public void GoToServerList () {
+        AddServerCanvas.SetActive(false);
+        DirectConnectCanvas.SetActive(false);
+        serverListCanvas.SetActive(true);
     }
 
-    public override void ServerConnect (ServerConnectEvent serverConnectEvent) {
-        Debug.Log("Te has conectado al servidor: " + serverConnectEvent.GetAddress() + ":" + serverConnectEvent.GetPort());
+    public void GoToAddServer () {
+        serverListCanvas.SetActive(false);
+        AddServerCanvas.SetActive(true);
     }
 
-    public override void ServerDisconnect (ServerDisconnectEvent serverDisconnectEvent) {
-        Debug.Log("Has sido desconectado del servidor: " + serverDisconnectEvent.GetReason());
+    public void GoToDirectConnect () {
+        serverListCanvas.SetActive(false);
+        AddServerCanvas.SetActive(true);
+    }
+
+    public override void AccountLogin(AccountLoginEvent accountLoginEvent) {
+        GlobalCanvas.SetActive(true);
+        usernameText.text = accountLoginEvent.GetUser().username;
+
+        loginCanvas.SetActive(false);
+        serverListCanvas.SetActive(true);
     }
 }

@@ -8,14 +8,10 @@ namespace Lune {
         // Deserializable fields
         public string channel { get; set; } 
         public string subchannel { get; set; } 
-        public List<object> strings { get; set; } 
-        public List<object> ints { get; set; } 
-        public List<object> bools { get; set; } 
-        public List<object> vector3 { get; set; } 
-        public List<object> vector2 { get; set; } 
+        public string raw { get; set; } 
 
         // Class fields
-        private bool cancelled;
+        private bool cancelled = false;
 
         public bool isCancelled () {
             return this.cancelled;

@@ -8,6 +8,8 @@ namespace Lune {
         public virtual void PacketReceive (PacketReceiveEvent packetReceiveEvent) { }
         public virtual void ServerConnect (ServerConnectEvent serverConnectEvent) { }
         public virtual void ServerDisconnect (ServerDisconnectEvent serverDisconnectEvent) { }
+        public virtual void AccountLoginFailed (AccountLoginFailedEvent accountLoginFailedEvent) {}
+        public virtual void AccountLogin (AccountLoginEvent accountLoginEvent) {}
     }
 
 }

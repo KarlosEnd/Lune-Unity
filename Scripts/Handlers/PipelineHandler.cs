@@ -6,10 +6,6 @@ namespace Lune {
         
         private static List<Pipeline> pipelines = new List<Pipeline>();
 
-        public static void SetInitialsPipelines () {
-            AddPipeline(new PacketParserPipe());
-        }
-
         public static void AddPipeline (Pipeline pipeline) {
             pipelines.Add(pipeline);
         }
@@ -20,6 +16,8 @@ namespace Lune {
                     packet = pipeline.Process(packet);
                 }
             }
+
+            HandlePacket(packet);
         }
 
         public static void HandlePacket (Packet packet) {

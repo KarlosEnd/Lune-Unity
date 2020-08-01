@@ -26,5 +26,17 @@ namespace Lune {
                 listener.ServerDisconnect(serverDisconnectEvent);
             }
         }
+
+        public static void AccountLogin (AccountLoginEvent accountLoginEvent) {
+            foreach (Listener listener in listeners) {
+                listener.AccountLogin(accountLoginEvent);
+            }
+        }
+
+        public static void AccountLoginFailed (AccountLoginFailedEvent accountLoginFailedEvent) {
+            foreach (Listener listener in listeners) {
+                listener.AccountLoginFailed(accountLoginFailedEvent);
+            }
+        }
     }
 }

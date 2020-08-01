@@ -89,8 +89,7 @@ namespace Lune {
 
         private void HandleResponse (string data) {
             Packet packet = PacketHandler.ParseFromString(data);
-            PacketReceiveEvent ev = new PacketReceiveEvent(packet);
-            PipelineHandler.HandlePacket(packet);
+            PipelineHandler.RunPipeline(packet);
         }
     }
 }
